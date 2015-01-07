@@ -11,7 +11,12 @@
 @class ChooseFractionView;
 
 @protocol ChooseFractionViewDelegate <NSObject>
-
+/**
+ *  回傳分數的方法
+ *
+ *  @param chooseFractionView class名稱
+ *  @param fraction           回傳分數
+ */
 - (void)chooseFractionView:(ChooseFractionView *)chooseFractionView fraction:(int)fraction;
 
 @end
