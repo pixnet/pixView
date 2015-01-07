@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChooseFractionView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<ChooseFractionViewDelegate>
 
 
 @end

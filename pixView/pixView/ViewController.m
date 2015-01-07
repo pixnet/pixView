@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ChooseFractionView.h"
+
 
 @interface ViewController ()
 
@@ -27,9 +27,11 @@
     for (int i = 0 ; i < [array count] ; i++)
     {
         NSString *titleString = [array objectAtIndex:i];
-        ChooseFractionView *view = [[ChooseFractionView alloc]init:CGRectMake(startX , startY , [UIScreen mainScreen].bounds.size.width , 35.0)titleString:titleString fractionNumber:5];
+        ChooseFractionView *chooseFractionView = [[ChooseFractionView alloc]init:CGRectMake(startX , startY , [UIScreen mainScreen].bounds.size.width , 35.0)titleString:titleString fractionNumber:5];
+        chooseFractionView.tag = i;
+        chooseFractionView.delegate = self;
         startY += hMargin;
-        [self.view addSubview:view];
+        [self.view addSubview:chooseFractionView];
     }
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -37,6 +39,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)chooseFractionView:(ChooseFractionView *)chooseFractionView fraction:(int)fraction
+{
+    NSLog(@"Tag:%i",(int)chooseFractionView.tag);
+    NSLog(@"fraction:%i",fraction);
 }
 
 @end

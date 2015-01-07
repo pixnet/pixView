@@ -16,6 +16,7 @@
     NSMutableArray *fractionViews;
     NSMutableArray *fractionLabels;
 }
+@synthesize delegate;
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -48,16 +49,17 @@
     int count = (int)number;
     
     CGFloat startX = 100.0;
+    CGFloat other = ([UIScreen mainScreen].bounds.size.width - 320.0)/count;
     for (int i = 0 ; i < count ; i++)
     {
         UIView *view = [[UIView alloc]init];
-        [view setFrame:CGRectMake(startX , -3.0 , 40.0 , 30.0)];
+        [view setFrame:CGRectMake(startX , -3.0 , 40.0 + other , 30.0)];
         [view setBackgroundColor:[UIColor whiteColor]];
         UITapGestureRecognizer *singleFingerTap =
         [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseFractionAction:)];
         [view addGestureRecognizer:singleFingerTap];
         [view setTag:i];
-        [view.layer setBorderWidth:0.5];
+        [view.layer setBorderWidth:1];
         [view.layer setBorderColor:[blueColor CGColor]];
         [fractionViews addObject:view];
         [self addSubview:view];
@@ -71,7 +73,7 @@
         [fractionLabels addObject:label];
         [view addSubview:label];
         
-        startX += 39.0;
+        startX += 39.0 + other;
         
         if (i == 0)
         {
@@ -121,6 +123,7 @@
             [label setTextColor:blueColor];
         }
     }
+    [self.delegate chooseFractionView:self fraction:(touchIndex + 1)];
 }
 
 @end

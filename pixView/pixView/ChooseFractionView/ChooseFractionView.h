@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class ChooseFractionView;
+
+@protocol ChooseFractionViewDelegate <NSObject>
+
+- (void)chooseFractionView:(ChooseFractionView *)chooseFractionView fraction:(int)fraction;
+
+@end
+
 @interface ChooseFractionView : UIView
 
 /**
@@ -21,5 +29,6 @@
  */
 - (id)init:(CGRect)rect titleString:(NSString *)string fractionNumber:(NSInteger)number;
 
+@property (nonatomic , strong) id <ChooseFractionViewDelegate> delegate;
 
 @end
